@@ -6,6 +6,6 @@ namespace Lab2
     {
         void Log(string exceptionDetails);
         bool SendToLogger(Exception ex);
-        static int FailedRequestsConter { get; set; } = 0;
+        static int FailedRequestsConter { get; set; } 
     }
 }
