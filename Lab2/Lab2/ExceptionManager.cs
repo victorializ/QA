@@ -5,6 +5,7 @@ namespace Lab2
 {
     public class ExceptionManager : IExceptionManager
     {
+        ILoggerFactory _loggerFactory;
         ILogger _logger;
         ICustomConfiguration _config;
 
@@ -26,13 +27,14 @@ namespace Lab2
             NonCriticalExceptionsCounter = 0;
 
             _config = new CustomConfiguration();
-
+            
             CriticalExceptions = new List<string>(_config.GetExceptionsFromConfig().Value.Split(','));
         }
 
-        public ExceptionManager(ILogger logger) : this()
+        public ExceptionManager(ILoggerFactory loggerFactory) : this()
         {
-            _logger = logger;
+            _loggerFactory = loggerFactory;
+            _logger = _loggerFactory.CreateLogger();
         }
 
         public bool IsExceptionCritical(Exception exception)

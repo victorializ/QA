@@ -27,7 +27,9 @@ namespace Lab2Tests
         {
             Exception ex = (Exception)Activator.CreateInstance(exceptionType);
             var loggerMock = new Mock<ILogger>();
-            var exceptionManager = new ExceptionManager(loggerMock.Object);
+            var loggerFactory = new LoggerFactory();
+            loggerFactory.SetLogger(loggerMock.Object);
+            var exceptionManager = new ExceptionManager(loggerFactory);
 
             Assert.IsTrue(exceptionManager.IsExceptionCritical(ex));
         }
@@ -45,7 +47,9 @@ namespace Lab2Tests
         public void HandleException_CriticalException_OnlyCriticalCounterIncreased()
         {
             var loggerMock = new Mock<ILogger>();
-            var exceptionManager = new ExceptionManager(loggerMock.Object);
+            var loggerFactory = new LoggerFactory();
+            loggerFactory.SetLogger(loggerMock.Object);
+            var exceptionManager = new ExceptionManager(loggerFactory);
             Exception ex = new ArgumentException();
 
             exceptionManager.HandleException(ex);

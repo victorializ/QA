@@ -11,10 +11,12 @@ namespace Lab2Tests
         [Test]
         public void FailedRequestsCounter_Is1_IfExceptionOccurs()
         {
+            var loggerFactory = new LoggerFactory();
             var loggerMock = new Mock<ILogger>();
             var ex = new AccessViolationException();
             loggerMock.Setup(x => x.Log(ex)).Returns(false);
-            var exManager = new ExceptionManager(loggerMock.Object);
+            loggerFactory.SetLogger(loggerMock.Object);
+            var exManager = new ExceptionManager(loggerFactory);
 
             exManager.SendToLogger(ex);
 
@@ -24,12 +26,14 @@ namespace Lab2Tests
         [Test]
         public void FailedRequestsCounter_Is1_If2ExceptionsOccurButOnly1Logs()
         {
+            var loggerFactory = new LoggerFactory();
             var loggerMock = Mock.Of<ILogger>
                 (
                 l => l.Log(It.Is<AccessViolationException>(ex => ex.GetType() == typeof(AccessViolationException))) == true
                 && l.Log(It.Is<NullReferenceException>(ex => ex.GetType() == typeof(NullReferenceException))) == false
                 );
-            var exManager = new ExceptionManager(loggerMock);
+            loggerFactory.SetLogger(loggerMock);
+            var exManager = new ExceptionManager(loggerFactory);
 
             exManager.SendToLogger(new AccessViolationException());
             exManager.SendToLogger(new NullReferenceException());
@@ -41,9 +45,11 @@ namespace Lab2Tests
         public void FailedRequestsCounter_Is0_IfNoExceptionOccurs()
         {
             var loggerMock = new Mock<ILogger>();
-            var exManager = new ExceptionManager(loggerMock.Object);
+            var loggerFactory = new LoggerFactory();
             var ex = new AccessViolationException();
             loggerMock.Setup(x => x.Log(ex)).Returns(true);
+            loggerFactory.SetLogger(loggerMock.Object);
+            var exManager = new ExceptionManager(loggerFactory);
 
             exManager.SendToLogger(ex);
 
