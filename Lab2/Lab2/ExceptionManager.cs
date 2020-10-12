@@ -12,6 +12,7 @@ namespace Lab2
 
         public int CriticalExceptionsCounter { get; set; }
         public int NonCriticalExceptionsCounter { get; set; }
+        public int FailedRequestsCounter { get; set; }
 
         public ICustomConfiguration CustomConfiguration
         {
@@ -38,7 +39,7 @@ namespace Lab2
         {
             if (!(exception is null) && CriticalExceptions.Contains(exception.GetType().Name))
             {
-                _logger.SendToLogger(exception);
+                SendToLogger(exception);
                 return true;
             }
             return false;
@@ -60,5 +61,19 @@ namespace Lab2
                 NonCriticalExceptionsCounter++;
             }
         }
+
+        public bool SendToLogger(Exception ex)
+        {
+            if (_logger.Log(ex))
+            {
+                return true;
+            }
+            else
+            {
+                FailedRequestsCounter++;
+                return false;
+            }
+        }
+
     }
-}                               
+}
