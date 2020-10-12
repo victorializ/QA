@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Runtime.InteropServices;
 using Lab2;
+using Moq;
 
 namespace Lab2Tests
 {
@@ -25,7 +26,8 @@ namespace Lab2Tests
         public void IsExceptionCritical_CriticalException_ReturnTrue(Type exceptionType)
         {
             Exception ex = (Exception)Activator.CreateInstance(exceptionType);
-            ExceptionManager exceptionManager = new ExceptionManager();
+            var loggerMock = new Mock<ILogger>();
+            var exceptionManager = new ExceptionManager(loggerMock.Object);
 
             Assert.IsTrue(exceptionManager.IsExceptionCritical(ex));
         }
@@ -42,7 +44,8 @@ namespace Lab2Tests
         [Test]
         public void HandleException_CriticalException_OnlyCriticalCounterIncreased()
         {
-            ExceptionManager exceptionManager = new ExceptionManager();
+            var loggerMock = new Mock<ILogger>();
+            var exceptionManager = new ExceptionManager(loggerMock.Object);
             Exception ex = new ArgumentException();
 
             exceptionManager.HandleException(ex);

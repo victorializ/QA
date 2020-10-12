@@ -1,30 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
 
 namespace Lab2
 {
-    public class ExceptionManager: IExceptionManager
+    public class ExceptionManager : IExceptionManager
     {
         ILogger _logger;
+        ICustomConfiguration _config;
+
         List<string> CriticalExceptions { get; set; }
 
         public int CriticalExceptionsCounter { get; set; }
         public int NonCriticalExceptionsCounter { get; set; }
-        public int FailedRequestsCounter { get; set; }
+
+        public ICustomConfiguration CustomConfiguration
+        {
+            get { return _config; }
+            set { _config = value; }
+        }
 
         public ExceptionManager()
         {
             CriticalExceptionsCounter = 0;
             NonCriticalExceptionsCounter = 0;
-            FailedRequestsCounter = 0;
 
-            GetExceptionsFromConfig();
+            _config = new CustomConfiguration();
 
-            CriticalExceptions = new List<string>(GetExceptionsFromConfig().Value.Split(','));
+            CriticalExceptions = new List<string>(_config.GetExceptionsFromConfig().Value.Split(','));
         }
 
-        public ExceptionManager(ILogger logger): this()
+        public ExceptionManager(ILogger logger) : this()
         {
             _logger = logger;
         }
@@ -33,22 +38,10 @@ namespace Lab2
         {
             if (!(exception is null) && CriticalExceptions.Contains(exception.GetType().Name))
             {
-                SendToLogger(exception);
+                _logger.SendToLogger(exception);
                 return true;
             }
             return false;
-        }
-
-        public void SendToLogger(Exception ex)
-        {
-            try
-            {
-                bool res = _logger.Log($"Exception: {ex}; Time: {DateTime.UtcNow}");
-            }
-            catch
-            {
-                FailedRequestsCounter++;
-            }
         }
 
         public void HandleException(Exception exception)
@@ -67,12 +60,5 @@ namespace Lab2
                 NonCriticalExceptionsCounter++;
             }
         }
-
-        private static IConfigurationSection GetExceptionsFromConfig()
-        {
-            IConfigurationBuilder builder = new ConfigurationBuilder();
-            builder.AddJsonFile("appsettings.json");
-            return builder.Build().GetSection("CriticalExceptions");
-        }
     }
-}
+}                               
