@@ -1,0 +1,188 @@
+{
+  "id": "994e5b5b-815c-4eb4-9750-7a8cd183ec5f",
+  "version": "2.0",
+  "name": "Lab03_Rozetka_test",
+  "url": "https://rozetka.com.ua",
+  "tests": [{
+    "id": "7ea16283-b7f0-427f-8547-cf16237d7f5d",
+    "name": "Test_Search",
+    "commands": [{
+      "id": "bb7e65fa-95d7-4b60-a5b3-81a564e02c48",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8babc3eb-a7fd-4f2e-b64c-fcf0f2914473",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1040",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ec6b63c3-feea-4128-a82e-b3cdfc303af7",
+      "comment": "",
+      "command": "click",
+      "target": "name=search",
+      "targets": [
+        ["name=search", "name"],
+        ["css=.search-form__input", "css:finder"],
+        ["xpath=//input[@name='search']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4654c953-0ada-4c98-9180-96ba8bdc1437",
+      "comment": "",
+      "command": "type",
+      "target": "name=search",
+      "targets": [
+        ["name=search", "name"],
+        ["css=.search-form__input", "css:finder"],
+        ["xpath=//input[@name='search']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "iphone 12"
+    }, {
+      "id": "ea44d294-a547-4ba4-8def-3626715d3f6f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-form__submit",
+      "targets": [
+        ["css=.search-form__submit", "css:finder"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Найти')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6e26a4ff-75f8-4805-9d3d-6413d9aa5db9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.catalog-grid__cell:nth-child(1) .goods-tile__title",
+      "targets": [
+        ["css=.catalog-grid__cell:nth-child(1) .goods-tile__title", "css:finder"],
+        ["xpath=//a[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Apple iPhone 12 128GB Black Официальная гарантия')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc011766-60c8-4f88-a8f3-7946fc4acce7",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.tabs__item:nth-child(3) > .tabs__link",
+      "targets": [
+        ["css=.tabs__item:nth-child(3) > .tabs__link", "css:finder"],
+        ["xpath=(//a[contains(@href, 'https://rozetka.com.ua/apple_iphone_12_128gb_black/p245162293/comments/')])[2]", "xpath:href"],
+        ["xpath=//rz-tabs/div/div/ul/li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aad5d504-ced1-491c-9036-cffc04bf0bcd",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.product__title",
+      "targets": [],
+      "value": "Apple iPhone 12 128GB Black Официальная гарантия"
+    }]
+  }, {
+    "id": "f2dfe2d5-bd9c-42ff-9f65-b5a039d8e71a",
+    "name": "Test_Cart",
+    "commands": [{
+      "id": "4814285a-b8c5-448f-8ac3-2ad8c9e0bd30",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0fa831ef-3cd0-4f20-9d8b-9cf5bc7ffadc",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1040",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "afbd7ed3-df83-4315-b145-4cd9c9200b6e",
+      "comment": "",
+      "command": "click",
+      "target": "name=search",
+      "targets": [
+        ["name=search", "name"],
+        ["css=.search-form__input", "css:finder"],
+        ["xpath=//input[@name='search']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "15d18310-62a3-4451-a7d9-4ac6ad1c472c",
+      "comment": "",
+      "command": "type",
+      "target": "name=search",
+      "targets": [
+        ["name=search", "name"],
+        ["css=.search-form__input", "css:finder"],
+        ["xpath=//input[@name='search']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "iphone 12"
+    }, {
+      "id": "837ec7e3-4888-46c0-923d-0512c0a8fb36",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-form__submit",
+      "targets": [
+        ["css=.search-form__submit", "css:finder"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Найти')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f270aac-1a47-4e83-9ae6-919588a32887",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Apple iPhone 12 128GB Black Официальная гарантия')]",
+      "targets": [
+        ["css=.catalog-grid__cell:nth-child(1) .goods-tile__title", "css:finder"],
+        ["xpath=//a[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Apple iPhone 12 128GB Black Официальная гарантия')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e8dd0829-71ea-4cae-9306-10979747c339",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.product__title",
+      "targets": [],
+      "value": "Apple iPhone 12 128GB Black Официальная гарантия"
+    }, {
+      "id": "a5442f45-6821-44b7-9ed4-55108d08f407",
+      "comment": "",
+      "command": "click",
+      "target": "css=.button_with_icon > .buy-button__label",
+      "targets": [
+        ["css=.button_with_icon > .buy-button__label", "css:finder"],
+        ["xpath=//app-buy-button/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Купить')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "00004fb0-6fae-4063-a45b-0058967b24c2",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=Apple iPhone 12 128GB Black Официальная гарантия",
+      "targets": [],
+      "value": "Apple iPhone 12 128GB Black Официальная гарантия"
+    }]
+  }],
+  "suites": [{
+    "id": "30f99022-6ea8-49b3-a3c7-b476e7af56a5",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["7ea16283-b7f0-427f-8547-cf16237d7f5d"]
+  }],
+  "urls": ["https://rozetka.com.ua/"],
+  "plugins": []
+}
