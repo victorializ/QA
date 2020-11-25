@@ -1,2 +1,1 @@
-# QA
-KPI labs
+QA lab2
